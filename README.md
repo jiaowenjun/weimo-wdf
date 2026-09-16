@@ -63,7 +63,7 @@ weimo-doc = "0.1"
 weimo-doc = { git = "https://github.com/jiaowenjun/weimo-doc" }
 ```
 
-Requires Rust 1.85+ (edition 2024). No crate features, no `unsafe`, no I/O — pure data in, data out. The crate name is `weimo-doc`; in Rust code, import it as `weimo_doc` (hyphens map to underscores).
+Requires Rust 1.88+ (edition 2024, let-chains). No crate features, no `unsafe`, no I/O — pure data in, data out. The crate name is `weimo-doc`; in Rust code, import it as `weimo_doc` (hyphens map to underscores).
 
 ### Convert Markdown for a web editor
 
