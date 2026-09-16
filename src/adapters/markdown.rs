@@ -42,7 +42,7 @@ struct Cursor<'a> {
     diagnostics: Diagnostics,
 }
 
-impl<'a> Cursor<'a> {
+impl Cursor<'_> {
     fn parse_blocks(&mut self, terminator: Option<TagEnd>) -> Vec<WdfBlock> {
         let mut blocks = Vec::new();
         while self.index < self.events.len() {

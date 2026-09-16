@@ -254,14 +254,14 @@ fn validate_inline(
                 "inline node type must be text",
             ));
         }
-        if let Some(marks) = &text.marks
-            && (marks.len() > 1 || marks.iter().any(|mark| mark.mark_type != "bold"))
-        {
-            diagnostics.push(Diagnostic::error(
-                "wdf",
-                "wdf.unsupported_mark",
-                "only one bold mark is supported",
-            ));
+        if let Some(marks) = &text.marks {
+            if marks.len() > 1 || marks.iter().any(|mark| mark.mark_type != "bold") {
+                diagnostics.push(Diagnostic::error(
+                    "wdf",
+                    "wdf.unsupported_mark",
+                    "only one bold mark is supported",
+                ));
+            }
         }
     }
 }
@@ -336,11 +336,11 @@ fn canonical_inline(content: Vec<WdfText>) -> Vec<WdfText> {
         } else {
             text.marks = None;
         }
-        if let Some(previous) = result.last_mut()
-            && previous.is_bold() == text.is_bold()
-        {
-            previous.text.push_str(&text.text);
-            continue;
+        if let Some(previous) = result.last_mut() {
+            if previous.is_bold() == text.is_bold() {
+                previous.text.push_str(&text.text);
+                continue;
+            }
         }
         result.push(text);
     }
