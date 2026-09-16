@@ -1,0 +1,15 @@
+{
+  "schema": "weimo.document",
+  "version": 1,
+  "root": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          { "type": "text", "text": "unsupported", "marks": [{ "type": "italic" }] }
+        ]
+      }
+    ]
+  }
+}

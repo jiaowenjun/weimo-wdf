@@ -1,0 +1,13 @@
+{
+  "schema": "weimo.document",
+  "version": 1,
+  "root": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "bullet_list",
+        "content": []
+      }
+    ]
+  }
+}

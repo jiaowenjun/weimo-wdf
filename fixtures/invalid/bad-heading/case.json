@@ -1,0 +1,16 @@
+{
+  "schema": "weimo.document",
+  "version": 1,
+  "root": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 7
+        },
+        "content": []
+      }
+    ]
+  }
+}

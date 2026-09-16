@@ -1,0 +1,12 @@
+[
+  {
+    "code": "wdf.invalid_heading_level",
+    "path": [
+      "root",
+      "content",
+      0,
+      "attrs",
+      "level"
+    ]
+  }
+]
