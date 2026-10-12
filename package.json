@@ -1,0 +1,51 @@
+{
+  "name": "weimo-wdf",
+  "version": "0.1.0",
+  "description": "WDF (Weimo Document Format): a strict canonical rich-text model with adapters for Tiptap/ProseMirror JSON, Apple document JSON, Markdown, and plain-text rendering",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./markdown": {
+      "types": "./dist/adapters/markdown/index.d.ts",
+      "default": "./dist/adapters/markdown/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "prepublishOnly": "npm run check && npm test && npm run build"
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiaowenjun/weimo-wdf.git"
+  },
+  "keywords": [
+    "wdf",
+    "document",
+    "markdown",
+    "tiptap",
+    "prosemirror",
+    "rich-text"
+  ]
+}

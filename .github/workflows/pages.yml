@@ -1,0 +1,80 @@
+name: Pages
+
+# Publishes the demo page to GitHub Pages at
+# https://jiaowenjun.github.io/weimo-wdf/. The deployed site mirrors the
+# repository layout (demo/, dist/, docs/, schema/), so every relative path in
+# demo/index.html — ./app.js, ../dist/…, ../docs/… — resolves unchanged under
+# the /weimo-wdf/ base. A generated root index.html redirects to demo/.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "demo/**"
+      - "src/**"
+      - "docs/**"
+      - "schema/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -R demo dist docs schema _site/
+          printf '%s\n' \
+            '<!doctype html><meta charset="utf-8"><title>weimo-wdf demo</title>' \
+            '<meta http-equiv="refresh" content="0; url=./demo/">' \
+            '<a href="./demo/">weimo-wdf demo</a>' > _site/index.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

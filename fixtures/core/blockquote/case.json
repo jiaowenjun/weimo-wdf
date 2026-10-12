@@ -1,0 +1,40 @@
+{
+  "schema": "weimo.document",
+  "version": 1,
+  "root": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "quoted "
+              },
+              {
+                "type": "text",
+                "text": "first"
+              },
+              {
+                "type": "text",
+                "text": " paragraph"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "quoted second paragraph"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

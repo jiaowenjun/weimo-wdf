@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>weimo-wdf · WDF 演示</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "markdown-it": "https://esm.sh/markdown-it@14.3.2"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>weimo-wdf</h1>
+      <p>WDF(Weimo Document Format)交互演示 —— 严格校验 · 规范化 · 多格式互转</p>
+    </div>
+    <p class="note">
+      页面直接加载仓库的 <code>dist/</code> 构建产物(npm 包本体);
+      <code>weimo-wdf/markdown</code> 子入口的 markdown-it 依赖经 esm.sh CDN 加载。
+    </p>
+  </header>
+
+  <main>
+    <section class="card input-card">
+      <div class="card-head">
+        <h2>输入</h2>
+        <div class="tabs" id="input-tabs">
+          <button data-mode="markdown" class="active" type="button">Markdown</button>
+          <button data-mode="wdf" type="button">WDF JSON</button>
+        </div>
+      </div>
+      <textarea id="input" spellcheck="false" aria-label="输入"></textarea>
+      <div class="samples" id="samples"></div>
+      <p class="status" id="status"></p>
+    </section>
+
+    <section class="card output-card">
+      <div class="card-head">
+        <h2>输出</h2>
+        <div class="tabs" id="output-tabs">
+          <button data-tab="wdf" class="active" type="button">WDF JSON(canonical)</button>
+          <button data-tab="tiptap" type="button">Tiptap JSON</button>
+          <button data-tab="apple" type="button">Apple JSON</button>
+          <button data-tab="markdown" type="button">Markdown</button>
+          <button data-tab="plain" type="button">纯文本</button>
+        </div>
+        <button id="copy" class="ghost" type="button">复制</button>
+      </div>
+      <div class="diagnostics" id="diagnostics" hidden></div>
+      <pre id="output"><code id="output-code"></code></pre>
+      <p class="hint">
+        所有 <code>from*</code> 入口返回 <code>{ ok, value | diagnostics }</code>:
+        接受的输入先规范化(CRLF→LF、丢弃空 run、合并同 marks 相邻 run、ordered list 补
+        <code>attrs.start</code>);拒绝的输入给出结构化诊断,绝不静默吞数据。
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      v0.1 子集:段落 / 标题 1–6 / 引用 / 两种列表 / <strong>bold</strong>,其余(链接、斜体、代码、嵌套列表……)一律拒绝 ·
+      <a href="../docs/format-reference.md">格式对照表</a> ·
+      <a href="../schema/wdf-v0.1.schema.json">JSON Schema</a>
+    </p>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
