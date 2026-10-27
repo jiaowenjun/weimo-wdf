@@ -15,7 +15,7 @@ use serde_json::{Value, json};
 ///
 /// ```
 /// use serde_json::json;
-/// use weimo_doc::from_tiptap;
+/// use weimo_wdf::from_tiptap;
 ///
 /// let value = json!({
 ///     "type": "doc",

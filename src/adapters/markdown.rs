@@ -16,7 +16,7 @@ use serde_json::json;
 /// diagnostic instead of being silently dropped.
 ///
 /// ```
-/// use weimo_doc::{WdfBlock, from_markdown};
+/// use weimo_wdf::{WdfBlock, from_markdown};
 ///
 /// let doc = from_markdown("# Title\n\nplain paragraph\n").expect("supported");
 /// assert!(matches!(doc.root.content[1], WdfBlock::Paragraph { .. }));

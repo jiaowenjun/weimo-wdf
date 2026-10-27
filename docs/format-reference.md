@@ -1,6 +1,6 @@
 # Format reference
 
-`weimo-doc` keeps one canonical model ([`WdfDocument`]) and converts it to and from four wire formats. This document maps every supported concept across the formats, records where their underlying structures genuinely diverge, and spells out the canonicalization, round-trip and strictness rules. The Rust validator (`validate_and_canonicalize`) is the semantic authority; this document describes what it guarantees.
+`weimo-wdf` keeps one canonical model ([`WdfDocument`]) and converts it to and from four wire formats. This document maps every supported concept across the formats, records where their underlying structures genuinely diverge, and spells out the canonicalization, round-trip and strictness rules. The Rust validator (`validate_and_canonicalize`) is the semantic authority; this document describes what it guarantees.
 
 All examples in this document are mechanical outputs of the crate, not hand-written approximations. JSON object key order is never significant (serialization may sort keys); the shapes below use conventional key order for readability.
 

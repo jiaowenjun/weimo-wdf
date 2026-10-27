@@ -2,21 +2,21 @@
 resolver = "2"
 
 [package]
-name = "weimo-doc"
-version = "0.1.0"
+name = "weimo-wdf"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.88"
 authors = ["Weimo <weimo@weimo.cc>"]
 description = "Strict canonical rich-text document model with adapters for Markdown, Tiptap/ProseMirror JSON, Apple document JSON, and terminal output"
 license = "MIT"
-repository = "https://github.com/jiaowenjun/weimo-doc"
-homepage = "https://github.com/jiaowenjun/weimo-doc"
+repository = "https://github.com/jiaowenjun/weimo-wdf-rs"
+homepage = "https://github.com/jiaowenjun/weimo-wdf-rs"
 readme = "README.md"
 keywords = ["wdf", "document", "markdown", "tiptap", "rich-text"]
 categories = ["text-processing", "encoding"]
 
 [lib]
-name = "weimo_doc"
+name = "weimo_wdf"
 path = "src/lib.rs"
 
 [dependencies]

@@ -1,6 +1,6 @@
 use serde_json::Value;
 use std::{fs, path::PathBuf};
-use weimo_doc::{
+use weimo_wdf::{
     from_apple, from_markdown, from_tiptap, to_apple, to_markdown, to_tiptap,
     validate_and_canonicalize,
 };

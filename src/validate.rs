@@ -21,7 +21,7 @@ use crate::{
 ///
 /// ```
 /// use serde_json::json;
-/// use weimo_doc::validate_and_canonicalize;
+/// use weimo_wdf::validate_and_canonicalize;
 ///
 /// let input = json!({
 ///     "schema": "weimo.document",

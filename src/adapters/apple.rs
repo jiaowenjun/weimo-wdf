@@ -60,7 +60,7 @@ pub enum AppleWireBlock {
 ///
 /// ```
 /// use serde_json::json;
-/// use weimo_doc::from_apple;
+/// use weimo_wdf::from_apple;
 ///
 /// let value = json!({
 ///     "type": "apple.document",

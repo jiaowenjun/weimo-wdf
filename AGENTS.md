@@ -1,11 +1,11 @@
-# weimo-doc 协作与发布规范
+# weimo-wdf 协作与发布规范
 
 本文档适用于维护者和自动化代理。发布只有在 GitHub 和 crates.io 两侧都完成时才算完成。
 
 ## 基本约定
 
 - `main` 是可发布分支；公共 API、README、`docs/format-reference.md`、rustdoc 和测试保持同步。
-- crate 名是 `weimo-doc`（Rust 导入名 `weimo_doc`）；文档格式名是 WDF（`weimo.document` schema、`wdf.*` 诊断码、`WdfDocument` 类型），两者不要混淆。
+- crate 名是 `weimo-wdf`（Rust 导入名 `weimo_wdf`），与 TypeScript 版包 `weimo-wdf` 同名对齐；文档格式名是 WDF（`weimo.document` schema、`wdf.*` 诊断码、`WdfDocument` 类型），两者不要混淆。
 - 版本号以 `Cargo.toml` 的 `[package].version` 为准，并同步检查 `Cargo.lock`。
 - 遵循 SemVer；公共 API 变化必须在 rustdoc、README 和 `docs/format-reference.md` 中说明。
 - 已发布版本的远端 tag 不得重写或强制移动，crates.io 版本不得重复上传。
@@ -56,7 +56,7 @@ GitHub 的 `vX.Y.Z` annotated tag 是唯一发布入口。推送 tag 后，
    version="$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')"
    git ls-remote --tags origin "refs/tags/v${version}" "refs/tags/v${version}^{}"
    test "$(git rev-parse "v${version}^{commit}")" = "$(git rev-parse HEAD)"
-   curl --fail --silent --show-error "https://crates.io/api/v1/crates/weimo-doc" \
+   curl --fail --silent --show-error "https://crates.io/api/v1/crates/weimo-wdf" \
      | jq -r '.crate.max_version'
    test -z "$(git status --porcelain)"
    ```
@@ -71,3 +71,6 @@ GitHub 的 `vX.Y.Z` annotated tag 是唯一发布入口。推送 tag 后，
 
 本 crate 源自 weimo 主仓库（`weimo-wdf-mvp` 验证项目）。本仓库是发布与后续开发的
 upstream；主仓库内若保留副本，修改应以本仓库为准并单向同步。
+
+2026-10 起 crate 由 `weimo-doc` 更名为 `weimo-wdf`，仓库更名为 `weimo-wdf-rs`，与
+TypeScript 版 `weimo-wdf` 对齐；crates.io 上的 `weimo-doc` 0.1.0 仍保留但不再维护。

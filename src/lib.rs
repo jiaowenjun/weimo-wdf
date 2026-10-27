@@ -1,4 +1,4 @@
-//! `weimo-doc` implements **WDF**, the Weimo Document Format: a small,
+//! `weimo-wdf` implements **WDF**, the Weimo Document Format: a small,
 //! strict, canonical model for rich-text documents, plus adapters that convert
 //! between the formats editors actually speak.
 //!
@@ -43,7 +43,7 @@
 //! Convert Markdown into Tiptap JSON for a web editor:
 //!
 //! ```
-//! use weimo_doc::{from_markdown, to_tiptap};
+//! use weimo_wdf::{from_markdown, to_tiptap};
 //!
 //! let doc = from_markdown("# Release notes\n\n- **bold** item\n")
 //!     .expect("supported markdown");
@@ -56,7 +56,7 @@
 //!
 //! ```
 //! use serde_json::json;
-//! use weimo_doc::validate_and_canonicalize;
+//! use weimo_wdf::validate_and_canonicalize;
 //!
 //! let input = json!({
 //!     "schema": "weimo.document",
