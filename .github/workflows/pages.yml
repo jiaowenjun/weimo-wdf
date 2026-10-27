@@ -1,22 +1,22 @@
 name: Pages
 
-# Publishes the demo page to GitHub Pages at
-# https://jiaowenjun.github.io/weimo-wdf-ts/. The deployed site mirrors the
-# repository layout (demo/, dist/, docs/, schema/), so every relative path in
+# Publishes the TypeScript demo to GitHub Pages at
+# https://jiaowenjun.github.io/weimo-wdf/. The deployed site mirrors
+# weimo-wdf-ts/ (demo/, dist/, docs/, schema/), so every relative path in
 # demo/index.html — ./app.js, ../dist/…, ../docs/… — resolves unchanged under
-# the /weimo-wdf-ts/ base. A generated root index.html redirects to demo/.
+# the /weimo-wdf/ base. A generated root index.html redirects to demo/.
 
 on:
   push:
     branches:
       - main
     paths:
-      - "demo/**"
-      - "src/**"
-      - "docs/**"
-      - "schema/**"
-      - "package.json"
-      - "package-lock.json"
+      - "weimo-wdf-ts/demo/**"
+      - "weimo-wdf-ts/src/**"
+      - "weimo-wdf-ts/docs/**"
+      - "weimo-wdf-ts/schema/**"
+      - "weimo-wdf-ts/package.json"
+      - "weimo-wdf-ts/package-lock.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -42,13 +42,15 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: weimo-wdf-ts/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: weimo-wdf-ts
 
       - name: Build package
         run: npm run build
+        working-directory: weimo-wdf-ts
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -56,7 +58,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp -R demo dist docs schema _site/
+          cp -R weimo-wdf-ts/demo weimo-wdf-ts/dist weimo-wdf-ts/docs weimo-wdf-ts/schema _site/
           printf '%s\n' \
             '<!doctype html><meta charset="utf-8"><title>weimo-wdf demo</title>' \
             '<meta http-equiv="refresh" content="0; url=./demo/">' \

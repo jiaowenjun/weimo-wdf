@@ -1,6 +1,7 @@
-# weimo-wdf 协作与发布规范
+# weimo-wdf（Rust）协作与发布规范
 
 本文档适用于维护者和自动化代理。发布只有在 GitHub 和 crates.io 两侧都完成时才算完成。
+monorepo 级约定见根目录 [`AGENTS.md`](../AGENTS.md)。
 
 ## 基本约定
 
@@ -12,15 +13,16 @@
 
 ## 发布规则
 
-GitHub 的 `vX.Y.Z` annotated tag 是唯一发布入口。推送 tag 后，
-`.github/workflows/publish.yml` 会校验版本并运行检查，成功后发布 crates.io。
+GitHub 的 `rs-vX.Y.Z` annotated tag 是唯一发布入口。推送 tag 后，
+仓库根 `.github/workflows/publish-rs.yml` 会校验版本并运行检查，成功后发布 crates.io。
+tag 前缀 `rs-` 将 Rust 发布与 TypeScript 发布（`ts-v*`）区分开。
 
 严禁在推送 tag 前单独执行 `cargo publish`。发布完成必须同时满足：版本提交已推送到
-`main`、tag 指向该提交、`Publish` 工作流成功、crates.io 可查询到同一版本。
+`main`、tag 指向该提交、`Publish (Rust)` 工作流成功、crates.io 可查询到同一版本。
 
 ## 发布流程
 
-以下命令从仓库根目录执行，`X.Y.Z` 替换为实际版本：
+以下命令从本子目录（`weimo-wdf-rs/`）执行，`X.Y.Z` 替换为实际版本：
 
 1. 更新版本号、`Cargo.lock` 和必要文档。
 2. 发布前检查：
@@ -46,16 +48,16 @@ GitHub 的 `vX.Y.Z` annotated tag 是唯一发布入口。推送 tag 后，
 
    ```bash
    version="$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')"
-   git tag -a "v${version}" HEAD -m "Release v${version}"
-   git push origin "v${version}"
+   git tag -a "rs-v${version}" HEAD -m "Release rs-v${version}"
+   git push origin "rs-v${version}"
    ```
 
-5. 等待 `Publish` 成功后核验 tag、提交和 crates.io：
+5. 等待 `Publish (Rust)` 成功后核验 tag、提交和 crates.io：
 
    ```bash
    version="$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')"
-   git ls-remote --tags origin "refs/tags/v${version}" "refs/tags/v${version}^{}"
-   test "$(git rev-parse "v${version}^{commit}")" = "$(git rev-parse HEAD)"
+   git ls-remote --tags origin "refs/tags/rs-v${version}" "refs/tags/rs-v${version}^{}"
+   test "$(git rev-parse "rs-v${version}^{commit}")" = "$(git rev-parse HEAD)"
    curl --fail --silent --show-error "https://crates.io/api/v1/crates/weimo-wdf" \
      | jq -r '.crate.max_version'
    test -z "$(git status --porcelain)"
@@ -74,3 +76,5 @@ upstream；主仓库内若保留副本，修改应以本仓库为准并单向同
 
 2026-10 起 crate 由 `weimo-doc` 更名为 `weimo-wdf`，仓库更名为 `weimo-wdf-rs`，与
 TypeScript 版 `weimo-wdf` 对齐；crates.io 上的 `weimo-doc` 0.1.0 仍保留但不再维护。
+随后与 TS 仓库合并为 `weimo-wdf` monorepo，本目录为其中的 Rust 子项目；历史 tag
+`v0.1.0`/`v0.1.1` 是合并前的 Rust 发布 tag，保持原样，此后新发布一律用 `rs-v*`。

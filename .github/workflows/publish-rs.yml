@@ -1,9 +1,9 @@
-name: Publish
+name: Publish (Rust)
 
 on:
   push:
     tags:
-      - "v*"
+      - "rs-v*"
 
 permissions:
   contents: read
@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    defaults:
+      run:
+        working-directory: weimo-wdf-rs
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -33,7 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           version="$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')"
-          tag_version="${GITHUB_REF_NAME#v}"
+          tag_version="${GITHUB_REF_NAME#rs-v}"
           [[ "$tag_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
             echo "Tag $GITHUB_REF_NAME is not a semantic version tag" >&2
             exit 1

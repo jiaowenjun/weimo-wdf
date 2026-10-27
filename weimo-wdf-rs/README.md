@@ -2,14 +2,14 @@
 
 [![Crates.io](https://img.shields.io/crates/v/weimo-wdf.svg)](https://crates.io/crates/weimo-wdf)
 [![Documentation](https://docs.rs/weimo-wdf/badge.svg)](https://docs.rs/weimo-wdf)
-[![CI](https://github.com/jiaowenjun/weimo-wdf-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/jiaowenjun/weimo-wdf-rs/actions/workflows/ci.yml)
-[![License](https://img.shields.io/crates/l/weimo-wdf.svg)](https://github.com/jiaowenjun/weimo-wdf-rs/blob/main/LICENSE)
+[![CI](https://github.com/jiaowenjun/weimo-wdf/actions/workflows/ci-rs.yml/badge.svg)](https://github.com/jiaowenjun/weimo-wdf/actions/workflows/ci-rs.yml)
+[![License](https://img.shields.io/crates/l/weimo-wdf.svg)](https://github.com/jiaowenjun/weimo-wdf/blob/main/LICENSE)
 
 `weimo-wdf` implements **WDF**, the Weimo Document Format: a small, strict, canonical model for rich-text documents, plus adapters that convert between the formats editors actually speak: **Markdown**, **Tiptap / ProseMirror JSON**, **Apple document JSON**, and plain **terminal output**.
 
 One model, five surfaces — with hard validation and no silent data loss.
 
-> **Status:** v0.1 — an intentionally tiny node subset (see [Scope](#scope)). The API may still change; semantic versioning starts at the first crates.io release. The *format* is named WDF; the *crate* is named `weimo-wdf` (the Rust implementation, aligned with the TypeScript package of the same name).
+> **Status:** v0.1 — an intentionally tiny node subset (see [Scope](#scope)). The API may still change; semantic versioning starts at the first crates.io release. The *format* is named WDF; the *crate* is named `weimo-wdf` (the Rust implementation, aligned with the TypeScript package of the same name). This directory holds the Rust implementation of the [`weimo-wdf`](https://github.com/jiaowenjun/weimo-wdf) monorepo; the TypeScript twin lives in [`../weimo-wdf-ts`](../weimo-wdf-ts).
 
 ## Why WDF?
 
