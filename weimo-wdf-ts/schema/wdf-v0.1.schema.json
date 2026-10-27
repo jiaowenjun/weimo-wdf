@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://weimo.ink/schemas/wdf-v0.1.schema.json",
+  "title": "Weimo Document Format v0.1",
+  "description": "Structural schema for the paragraph/heading/blockquote/list/text/bold node set. Cross-node semantics (parent-child constraints, canonicalization) are enforced by the runtime validator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "root"],
+  "properties": {
+    "schema": { "const": "weimo.document" },
+    "version": { "const": 1 },
+    "root": { "$ref": "#/$defs/doc" }
+  },
+  "$defs": {
+    "boldMark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": { "type": { "const": "bold" } }
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "text"],
+      "properties": {
+        "type": { "const": "text" },
+        "text": { "type": "string" },
+        "marks": {
+          "type": "array",
+          "maxItems": 1,
+          "items": { "$ref": "#/$defs/boldMark" }
+        }
+      }
+    },
+    "inlineContent": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/text" }
+    },
+    "paragraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "paragraph" },
+        "content": { "$ref": "#/$defs/inlineContent" }
+      }
+    },
+    "heading": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "attrs", "content"],
+      "properties": {
+        "type": { "const": "heading" },
+        "attrs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level"],
+          "properties": {
+            "level": { "type": "integer", "minimum": 1, "maximum": 6 }
+          }
+        },
+        "content": { "$ref": "#/$defs/inlineContent" }
+      }
+    },
+    "blockquote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "blockquote" },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/paragraph" }
+        }
+      }
+    },
+    "listItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "list_item" },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": { "$ref": "#/$defs/paragraph" }
+        }
+      }
+    },
+    "bulletList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "bullet_list" },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/listItem" }
+        }
+      }
+    },
+    "orderedList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "ordered_list" },
+        "attrs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "start": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/listItem" }
+        }
+      }
+    },
+    "block": {
+      "oneOf": [
+        { "$ref": "#/$defs/paragraph" },
+        { "$ref": "#/$defs/heading" },
+        { "$ref": "#/$defs/blockquote" },
+        { "$ref": "#/$defs/bulletList" },
+        { "$ref": "#/$defs/orderedList" }
+      ]
+    },
+    "doc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "doc" },
+        "content": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/block" }
+        }
+      }
+    }
+  }
+}

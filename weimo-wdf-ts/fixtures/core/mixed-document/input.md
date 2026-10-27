@@ -1,0 +1,11 @@
+# Release notes
+
+Weimo **bold** works.
+
+> quoted paragraph
+
+- first item
+- second item
+
+3. third item
+4. fourth item

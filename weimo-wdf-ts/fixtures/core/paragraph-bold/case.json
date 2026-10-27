@@ -1,0 +1,18 @@
+{
+  "schema": "weimo.document",
+  "version": 1,
+  "root": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          { "type": "text", "text": "Weimo " },
+          { "type": "text", "text": "bo", "marks": [{ "type": "bold" }] },
+          { "type": "text", "text": "ld", "marks": [{ "type": "bold" }] },
+          { "type": "text", "text": " works." }
+        ]
+      }
+    ]
+  }
+}
