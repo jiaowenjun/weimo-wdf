@@ -1,14 +1,14 @@
 # weimo-wdf — Weimo Document Format (WDF)
 
 [![npm](https://img.shields.io/npm/v/weimo-wdf.svg)](https://www.npmjs.com/package/weimo-wdf)
-[![CI](https://github.com/jiaowenjun/weimo-wdf/actions/workflows/ci.yml/badge.svg)](https://github.com/jiaowenjun/weimo-wdf/actions/workflows/ci.yml)
-[![License](https://img.shields.io/npm/l/weimo-wdf.svg)](https://github.com/jiaowenjun/weimo-wdf/blob/main/LICENSE)
+[![CI](https://github.com/jiaowenjun/weimo-wdf-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/jiaowenjun/weimo-wdf-ts/actions/workflows/ci.yml)
+[![License](https://img.shields.io/npm/l/weimo-wdf.svg)](https://github.com/jiaowenjun/weimo-wdf-ts/blob/main/LICENSE)
 
 `weimo-wdf` implements **WDF**, the Weimo Document Format: a small, strict, canonical model for rich-text documents, plus adapters that convert between the formats editors actually speak: **Markdown**, **Tiptap / ProseMirror JSON**, **Apple document JSON**, and plain **text output**.
 
 One model, five surfaces — with hard validation and no silent data loss.
 
-> **Status:** v0.1 — an intentionally tiny node subset (see [Scope](#scope)). The API may still change before 1.0. The *format* is named WDF; the *package* is named `weimo-wdf`.
+> **Status:** v0.1 — an intentionally tiny node subset (see [Scope](#scope)). The API may still change before 1.0. The *format* is named WDF; the *package* is named `weimo-wdf` (this repository, `weimo-wdf-ts`, holds the TypeScript implementation; the Rust twin lives in [`weimo-wdf-rs`](https://github.com/jiaowenjun/weimo-wdf-rs)).
 
 ## Why WDF?
 
@@ -134,7 +134,7 @@ toMarkdown(doc); // "- done **now**\n"
 
 ## Demo
 
-A live demo is published to GitHub Pages at <https://jiaowenjun.github.io/weimo-wdf/> (deployed by [`pages.yml`](.github/workflows/pages.yml) on every push to `main`). To run it locally, build the package, serve the repository root, and open <http://127.0.0.1:8421/demo/>:
+A live demo is published to GitHub Pages at <https://jiaowenjun.github.io/weimo-wdf-ts/> (deployed by [`pages.yml`](.github/workflows/pages.yml) on every push to `main`). To run it locally, build the package, serve the repository root, and open <http://127.0.0.1:8421/demo/>:
 
 ```bash
 npm run build

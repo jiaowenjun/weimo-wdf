@@ -1,10 +1,10 @@
 name: Pages
 
 # Publishes the demo page to GitHub Pages at
-# https://jiaowenjun.github.io/weimo-wdf/. The deployed site mirrors the
+# https://jiaowenjun.github.io/weimo-wdf-ts/. The deployed site mirrors the
 # repository layout (demo/, dist/, docs/, schema/), so every relative path in
 # demo/index.html — ./app.js, ../dist/…, ../docs/… — resolves unchanged under
-# the /weimo-wdf/ base. A generated root index.html redirects to demo/.
+# the /weimo-wdf-ts/ base. A generated root index.html redirects to demo/.
 
 on:
   push:

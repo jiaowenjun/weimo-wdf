@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiaowenjun/weimo-wdf.git"
+    "url": "git+https://github.com/jiaowenjun/weimo-wdf-ts.git"
   },
   "keywords": [
     "wdf",
